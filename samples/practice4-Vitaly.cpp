@@ -6,6 +6,9 @@
 #include <iostream>
 
 
+#include <opencv2/core/core.hpp>      
+#include <opencv2/highgui/highgui.hpp>
+
 using namespace std;
 using namespace cv;
 using namespace cv::tbm;
@@ -46,9 +49,33 @@ static void help()
 
 cv::Ptr<ITrackerByMatching> createTrackerByMatchingWithFastDescriptor();
 
+const string labels[21] = { "background",
+"aeroplane",
+"bicycle",
+"bird",
+"boat",
+"bottle",
+"bus",
+"car",
+"cat",
+"chair",
+"cow",
+"diningtable",
+"dog",
+"horse",
+"motorbike",
+"person",
+"pottedplant",
+"sheep",
+"sofa",
+"train",
+"tvmonitor"
+};
+
 class DnnObjectDetector
 {
 public:
+	vector <int> classId;
     DnnObjectDetector(const String& net_caffe_model_path, const String& net_caffe_weights_path,
         int desired_class_id = -1,
         float confidence_threshold = 0.2,
@@ -68,7 +95,7 @@ public:
         net_mean(net_mean),
         net_swapRB(net_swapRB)
     {
-        net = dnn::readNetFromCaffe(net_caffe_model_path, net_caffe_weights_path);
+        net = dnn::readNet(net_caffe_model_path, net_caffe_weights_path);
         if (net.empty())
             CV_Error(Error::StsError, "Cannot read Caffe net");
     }
@@ -106,6 +133,7 @@ public:
 
             TrackedObject cur_obj(cur_rect, cur_confidence, frame_idx, -1);
             res.push_back(cur_obj);
+			classId.push_back(cur_class_id);
         }
         return res;
     }
@@ -175,7 +203,9 @@ int main(int argc, char** argv) {
     DnnObjectDetector detector(detector_model, detector_weights, desired_class_id);
 
     Mat frame;
+	cap >> frame;
     namedWindow("Tracking by Matching", 1);
+	VideoWriter vcap("TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
 
     int frame_counter = -1;
     int64 time_total = 0;
@@ -206,7 +236,7 @@ int main(int argc, char** argv) {
         int64 frame_time = getTickCount();
 
         TrackedObjects detections = detector.detect(frame, frame_counter);
-
+		VideoWriter vcap("TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
         // timestamp in milliseconds
         uint64_t cur_timestamp = static_cast<uint64_t>(1000.0 / 30 * frame_counter);
         tracker->process(frame, detections, cur_timestamp);
@@ -220,21 +250,23 @@ int main(int argc, char** argv) {
 
         // Drawing all detected objects on a frame by BLUE COLOR
         for (const auto &detection : detections) {
-            cv::rectangle(frame, detection.rect, cv::Scalar(255, 0, 0), 3);
+            cv::rectangle(frame, detection.rect, cv::Scalar(255, 0, 0), 1);
         }
-
         // Drawing tracked detections only by RED color and print ID and detection
         // confidence level.
+		int n = 0;
         for (const auto &detection : tracker->trackedDetections()) {
-            cv::rectangle(frame, detection.rect, cv::Scalar(0, 0, 255), 3);
-            std::string text = std::to_string(detection.object_id) +
+            cv::rectangle(frame, detection.rect, cv::Scalar(0, 0, 255), 1);
+            std::string text = (labels[detector.classId[n]]) +
                 " conf: " + std::to_string(detection.confidence);
             cv::putText(frame, text, detection.rect.tl(), cv::FONT_HERSHEY_COMPLEX,
-                1.0, cv::Scalar(0, 0, 255), 3);
+                1.0, cv::Scalar(0, 0, 255), 1);
+			n++;
         }
 
-        imshow("Tracking by Matching", frame);
-
+       // imshow("Tracking by Matching", frame);
+		imshow("Tracking by Matching", frame);
+		vcap.write(frame);
         char c = (char)waitKey(2);
         if (c == 'q')
             break;
