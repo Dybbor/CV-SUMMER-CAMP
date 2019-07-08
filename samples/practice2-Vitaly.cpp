@@ -44,11 +44,11 @@ int main(int argc, char** argv)
 	String imgName(parser.get<String>("image"));
 	int width(parser.get<int>("width"));
 	int height(parser.get<int>("heigth"));
-	string model (parser.get<string>("model_path"));
-	string config( parser.get<string>("config_path"));
-	string label ( parser.get<string>("label_path"));
-	Scalar scalar (parser.get<Scalar>("mean"));
-	bool swapRB (parser.get<int>("swap"));
+	string model(parser.get<string>("model_path"));
+	string config(parser.get<string>("config_path"));
+	string label(parser.get<string>("label_path"));
+	Scalar scalar(parser.get<Scalar>("mean"));
+	bool swapRB(parser.get<int>("swap"));
 
 	Mat src = imread(imgName);
 	DnnClassificator dnnClassificator(model, config, label, width, height, scalar, swapRB);
@@ -57,13 +57,13 @@ int main(int argc, char** argv)
 	Point classIdPoint;
 	double confidence;
 	Mat dst = dnnClassificator.Classify(src);
-	minMaxLoc(dst.reshape(1,1), 0, &confidence, 0, &classIdPoint);
+	minMaxLoc(dst.reshape(1, 1), 0, &confidence, 0, &classIdPoint);
 	int classId = classIdPoint.x;
 	//Show result
 	ifstream file(label);
 	string str;
 	int n = 0;
-	while (!file.eof()) 
+	while (!file.eof())
 	{
 		getline(file, str);
 		if (n == classId) {
@@ -72,7 +72,8 @@ int main(int argc, char** argv)
 		n++;
 	}
 	file.close();
-	cout << "Class:" << classId+1<<"  "<<str << endl;
+	cout << "Class:" << classId + 1 << "  " << str << endl;
 	cout << "Confidence:" << confidence << endl;
 	return 0;
+
 }

@@ -1,3 +1,4 @@
+
 #include "classificator.h"
 
 DnnClassificator::DnnClassificator(string _model, string _config, string _labels, int _inputWidth, int _inputHeight, Scalar _mean, bool _swapRB)
@@ -19,13 +20,13 @@ DnnClassificator::DnnClassificator(string _model, string _config, string _labels
 	net.setPreferableTarget(targetId);
 }
 
- Mat DnnClassificator::Classify(Mat image)
+Mat DnnClassificator::Classify(Mat image)
 {
-	 Mat inputTensor;
-	 double scale = 1;
-	 blobFromImage(image, inputTensor, scale, Size(inputWidth,inputHeight), mean, swapRB);
-	 net.setInput(inputTensor);
-	 Mat prob = net.forward();
-	 prob = prob.reshape(1, 1);
-	 return prob;
+	Mat inputTensor;
+	double scale = 1;
+	blobFromImage(image, inputTensor, scale, Size(inputWidth, inputHeight), mean, swapRB);
+	net.setInput(inputTensor);
+	Mat prob = net.forward();
+	prob = prob.reshape(1, 1);
+	return prob;
 }
