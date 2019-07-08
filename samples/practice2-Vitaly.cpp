@@ -7,6 +7,13 @@
 
 #include "classificator.h"
 
+//use squeezenet
+//mean = 104 117 123
+//swap=0
+//w=227
+//h=227
+
+
 using namespace cv;
 using namespace std;
 

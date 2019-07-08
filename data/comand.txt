@@ -1,1 +1,7 @@
 cmake -DOpenCV_DIR="C:\OpenCV41\opencv\build" -G "Visual Studio 14 2015 Win64" "..\CV-SUMMER-CAMP"
+
+practice2-Vitaly.exe -i="..\..\CV-SUMMER-CAMP\data\goldfish.jpg" -w="227" -h="227" -model_path="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel" -config_path="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt" -label_path="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.labels" -mean="104 117 123" -swap="0"
+
+readfromcafe на readnet
+
+practice2-Vitaly.exe -i="..\..\CV-SUMMER-CAMP\data\goldfish.jpg" -w="227" -h="227" -model_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.caffemodel" -config_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.prototxt" -label_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.labels" -mean="104 117 123" -swap="0"
