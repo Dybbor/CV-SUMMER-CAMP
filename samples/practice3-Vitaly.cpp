@@ -8,6 +8,15 @@
 #include "detectedobject.h"
 #include "detector.h"
 
+
+//info about mobile--ssd
+//-w=300
+//-h=300
+//mean=127.5 127.5 127.5
+//scale=0.007
+//swap=0
+
+
 using namespace std;
 using namespace cv;
 using namespace cv::dnn;
