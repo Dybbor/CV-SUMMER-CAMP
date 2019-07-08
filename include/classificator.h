@@ -18,6 +18,7 @@ public:
     virtual Mat Classify(Mat image) = 0 {}
 };
 
+
 class DnnClassificator : public Classificator
 {
 	Net net;

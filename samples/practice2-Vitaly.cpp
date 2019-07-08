@@ -75,5 +75,4 @@ int main(int argc, char** argv)
 	cout << "Class:" << classId+1<<"  "<<str << endl;
 	cout << "Confidence:" << confidence << endl;
 	return 0;
-	
 }
