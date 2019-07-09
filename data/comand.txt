@@ -5,3 +5,9 @@ practice2-Vitaly.exe -i="..\..\CV-SUMMER-CAMP\data\goldfish.jpg" -w="227" -h="22
 readfromcafe на readnet
 
 practice2-Vitaly.exe -i="..\..\CV-SUMMER-CAMP\data\goldfish.jpg" -w="227" -h="227" -model_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.caffemodel" -config_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.prototxt" -label_path="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.labels" -mean="104 117 123" -swap="0"
+
+
+practice5-Vitaly.exe --video_name="..\..\CV-SUMMER-CAMP\data\topdogs.mp4" --detector_model="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel"--detector_config="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt"--detector_label="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.labels"--desired_class_id="12"--classi_model="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.caffemodel"--classi_config="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.prototxt"--classi_label="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.labels"
+
+
+practice4.exe -video_name="..\..\CV-SUMMER-CAMP\data\topdogs.mp4" -detector_model="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt"-detector_config="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel"--detector_label="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.labels"--desired_class_id="12"--classi_model="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.caffemodel"--classi_config="..\..\CV-SUMMER-CAMP\data\squeezenet\1.1\caffe\squeezenet1.1.prototxt"
