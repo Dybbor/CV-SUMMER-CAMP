@@ -50,7 +50,7 @@ class DnnObjectDetector
 {
 public:
     DnnObjectDetector(const String& net_caffe_model_path, const String& net_caffe_weights_path,
-        int desired_class_id = -1,
+		vector <int> desired_class ,
         float confidence_threshold = 0.2,
         //the following parameters are default for popular MobileNet_SSD caffe model
         const String& net_input_name = "data",
@@ -148,7 +148,21 @@ int main(int argc, char** argv) {
     int frame_step = parser.get<int>("frame_step");
     String detector_model = parser.get<String>("detector_model");
     String detector_weights = parser.get<String>("detector_weights");
-    int desired_class_id = parser.get<int>("desired_class_id");
+    String desired_class_id = parser.get<String>("desired_class_id");
+	vector <int> dci;
+	string str;
+	for (int i = 0; i < desired_class_id.length(); i++) {
+		int num;
+		if (desired_class_id[i] != ' ')
+			str += desired_class_id[i];
+		else
+		{
+			num = atoi(str.c_str());
+			dci.push_back(num);
+			str = "";
+		}
+	}
+
 
     if (video_name.empty() || detector_model.empty() || detector_weights.empty())
     {

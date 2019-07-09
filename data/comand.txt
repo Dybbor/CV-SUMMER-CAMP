@@ -8,4 +8,4 @@ practice2-Vitaly.exe -i="..\..\CV-SUMMER-CAMP\data\lemon.png" -w="227" -h="227" 
 
 practice4-Vitaly.exe --video_name="..\..\CV-SUMMER-CAMP\data\catdog.mp4" --detector_model="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt" --detector_weights="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel" --desired_class_id="12"
 
-practice4-Vitaly.exe --video_name="..\..\CV-SUMMER-CAMP\data\catdog.mp4" --detector_model="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt" --detector_weights="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel"  --desired_class_id="9"
+practice4-Vitaly.exe --video_name="..\..\CV-SUMMER-CAMP\data\topdogs.mp4" --start_frame="60" --frame_step="5" --detector_model="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.prototxt" --detector_weights="..\..\CV-SUMMER-CAMP\data\mobilenet-ssd\caffe\mobilenet-ssd.caffemodel"  --desired_class_id="12"
