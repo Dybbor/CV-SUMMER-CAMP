@@ -205,7 +205,7 @@ int main(int argc, char** argv) {
     Mat frame;
 	cap >> frame;
     namedWindow("Tracking by Matching", 1);
-	VideoWriter vcap("TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
+	//VideoWriter vcap("TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
 
     int frame_counter = -1;
     int64 time_total = 0;
@@ -236,7 +236,7 @@ int main(int argc, char** argv) {
         int64 frame_time = getTickCount();
 
         TrackedObjects detections = detector.detect(frame, frame_counter);
-		VideoWriter vcap("TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
+		VideoWriter vcap("..\TFile.mp4", VideoWriter::fourcc('M', 'P', 'E', 'G'), 100, Size(frame.cols, frame.rows), 1);
         // timestamp in milliseconds
         uint64_t cur_timestamp = static_cast<uint64_t>(1000.0 / 30 * frame_counter);
         tracker->process(frame, detections, cur_timestamp);
