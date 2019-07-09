@@ -259,7 +259,7 @@ int main(int argc, char** argv) {
             cv::rectangle(frame, detection.rect, cv::Scalar(0, 0, 255), 1);
             std::string text = (labels[detector.classId[n]]) +
                 " conf: " + std::to_string(detection.confidence);
-            cv::putText(frame, text, detection.rect.tl(), cv::FONT_HERSHEY_COMPLEX,
+            cv::putText(frame, text, detection.rect.tl(), cv::FONT_HERSHEY_COMPLEX_SMALL,
                 1.0, cv::Scalar(0, 0, 255), 1);
 			n++;
         }
